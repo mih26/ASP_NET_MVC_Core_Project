@@ -1,0 +1,16 @@
+﻿@model ConfigurationInputModel
+<div class="form-group row mb-1">
+    <div class="col-6">
+        <label asp-for="ConfigurationDetails"></label>
+        <input type="text" asp-for="ConfigurationDetails" class="form-control" />
+        <span asp-validation-for="ConfigurationDetails" class="text-danger"></span>
+    </div>
+    <div class="col-5">
+        <label asp-for="BrandValue"></label>
+        <input type="text" asp-for="BrandValue" class="form-control" />
+        <span asp-validation-for="BrandValue" class="text-danger"></span>
+    </div>
+    <div class="col-1">
+        <button type="button" id="add" class="btn btn-warning btn-sm mt-4">Add</button>
+    </div>
+</div>

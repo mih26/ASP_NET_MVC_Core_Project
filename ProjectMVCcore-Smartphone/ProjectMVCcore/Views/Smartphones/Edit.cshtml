@@ -1,0 +1,192 @@
+﻿@model SmartphoneEditModel
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="row">
+    <div class="col-12">
+        <h3>Edit Smartphone Configurations</h3>
+
+
+        <div class="alert alert-warning alert-dismissible fade show" role="alert" id="alert" style="display:none">
+            <span id="msg"><strong>Error</strong></span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+        <form id="f1" data-ajax="true"
+              data-ajax-method="POST"
+              data-ajax-mode="replace"
+              data-ajax-success="onSuccess"
+              data-ajax-failure="onFail">
+            <input type="hidden" asp-for="SmartphoneId" />
+            <div class="form-group row mb-1">
+                <label asp-for="SmartphoneModel" class="col-form-label col-2 text-end"></label>
+                <div class="col-4">
+                    <input type="text" asp-for="SmartphoneModel" class="form-control" />
+                    <span asp-validation-for="SmartphoneModel" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row mb-1">
+                <label asp-for="ManufactureDate" class="col-form-label col-2 text-end"></label>
+                <div class="col-4">
+                    <input type="text" asp-for="ManufactureDate" class="form-control date" />
+                    <span asp-validation-for="ManufactureDate" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group row mb-1">
+                <label asp-for="Price" class="col-form-label col-2 text-end"></label>
+                <div class="col-4">
+                    <input type="number" asp-for="Price" class="form-control" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row mb-1">
+                @Html.LabelFor(c => c.Picture, new { @class = "col-form-label col-2" })
+                <div class="col-4">
+                    <input type="file" id="pic" class="form-control" />
+                    @Html.HiddenFor(c => c.Picture, new { value = "" })
+                    <span asp-validation-for="Picture" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row mb-1">
+                @Html.LabelFor(c => c.Instock, new { @class = "col-form-label col-2" })
+                <div class="col-4">
+                    @Html.CheckBoxFor(c => c.Instock, new { @class = "mt-2" })
+                </div>
+            </div>
+            <div class="form-group row mb-1">
+
+                <h4>Configuration Details</h4>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Details</th>
+                            <th>Brand Code</th>
+
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableQ">
+                    </tbody>
+                </table>
+            </div>
+            <div class="form-group row mb-1">
+
+                <div class="col-12 text-center">
+                    <button type="button" id="save" class="btn btn-success">Save</button>
+                </div>
+            </div>
+        </form>
+        <form id="f2">
+            <h4>Smartphone Configurations</h4>
+            <div>
+                @await Html.PartialAsync("_AddConfiguration", new ConfigurationInputModel())
+            </div>
+        </form>
+    </div>
+    <div>&nbsp;</div>
+    <div class="col-12 d-flex justify-content-center">
+        @Html.ActionLink("Back to list", "Index", new { }, new { @class = "btn btn-info" })
+    </div>
+    <div>&nbsp;</div>
+</div>
+@section scripts
+    {
+    @await Html.PartialAsync("_ScriptsPartial")
+    <script type="text/javascript">
+        var configurations = [];
+        $.ajax({
+            type:'get',
+            url: '/Smartphones/GetConfigurations/' + $("#SmartphoneId").val(),
+            dataType: 'json',
+            success: r=>{
+            configurations = r;
+            makeTable();
+            }
+        })
+        $.validator.setDefaults({
+            ignore: ""
+        });
+        $(".date").datepicker({
+            format: 'yyyy-mm-dd'
+        });
+        $(document).on("click", "button.del", function () {
+            var i = $(this).data("index");
+            $(this).parent().parent().remove();
+            configurations.splice(i, 1);
+        });
+        $("#save").click(() => {
+            if (!$("#f1").valid()) return;
+            var smartphone = {
+                SmartphoneId: $("#SmartphoneId").val(),
+                SmartphoneModel: $("#SmartphoneModel").val(), ManufactureDate: $("#ManufactureDate").val(),
+                Price: $("#Price").val(),
+                Instock: document.getElementById("Instock").checked,
+                Picture: $("#Picture").val()
+            };
+            smartphone.Configurations = configurations;
+            $.ajax({
+                type: 'post',
+                url: '/smartphones/Edit',
+                dataType: 'json',
+                data: { model: smartphone },
+                success: r => {
+                    $("#msg").html("<strong>Success!</strong> data update.");
+                    $("#alert").show();
+                }
+            })
+        });
+        $("#pic").change(() => {
+            if (document.getElementById("pic").files.length) {
+                $("#Picture").val(document.getElementById("pic").files[0].name);
+                var formData = new FormData();
+                formData.append('Picture', document.getElementById("pic").files[0]);
+                $.ajax({
+                    url: '/Smartphones/Upload',
+                    data: formData,
+                    type: 'POST',
+                    contentType: false,
+                    processData: false, 
+                    success: r => {
+                        console.log(r);
+                        $("#Picture").val(r.saved);
+                    },
+                    error: err => {
+                        $("#msg").html("<strong>Error</strong> failed to upload.");
+                        $("#alert").show();
+                    }
+                });
+            }
+        });
+        $("#add").click(() => {
+            let ok = $("#f2").valid();
+            console.log(ok);
+            if (ok) {
+                configurations.push({ configurationDetails: $("#ConfigurationDetails").val(), brandValue: $("#BrandValue").val() });
+                makeTable();
+                $("#f2").trigger('reset');
+            }
+        })
+        function makeTable() {
+            console.log(configurations);
+            $("#tableQ").empty();
+            configurations.forEach((v, i) => {
+                $("#tableQ").append(`<tr >
+                                            <td>${v.configurationDetails}</td>
+                                            <td>${v.brandValue}</td>
+
+                                    <td><button type="button" data-index="${i}" class="btn btn-info btn-sm del">Delete</button></td>
+                                </tr>`);
+            })
+        }
+        function onSuccess(r) {
+        }
+        function onFail(err) {
+            console.log(err);
+        }
+    </script>
+}
+
+
+

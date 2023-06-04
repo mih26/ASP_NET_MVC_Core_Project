@@ -1,0 +1,53 @@
+is_global = true
+build_property.TargetFramework = net7.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = ProjectMVCcore
+build_property.RootNamespace = ProjectMVCcore
+build_property.ProjectDir = E:\5. Module Project\8. MVC Core\ProjectMVCcore-Smartphone\ProjectMVCcore\
+build_property.RazorLangVersion = 7.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = E:\5. Module Project\8. MVC Core\ProjectMVCcore-Smartphone\ProjectMVCcore
+build_property._RazorSourceGeneratorDebug = 
+
+[E:/5. Module Project/8. MVC Core/ProjectMVCcore-Smartphone/ProjectMVCcore/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/5. Module Project/8. MVC Core/ProjectMVCcore-Smartphone/ProjectMVCcore/Views/Shared/_AddConfiguration.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9BZGRDb25maWd1cmF0aW9uLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/5. Module Project/8. MVC Core/ProjectMVCcore-Smartphone/ProjectMVCcore/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/5. Module Project/8. MVC Core/ProjectMVCcore-Smartphone/ProjectMVCcore/Views/Shared/_ScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9TY3JpcHRzUGFydGlhbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/5. Module Project/8. MVC Core/ProjectMVCcore-Smartphone/ProjectMVCcore/Views/Smartphones/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU21hcnRwaG9uZXNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/5. Module Project/8. MVC Core/ProjectMVCcore-Smartphone/ProjectMVCcore/Views/Smartphones/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU21hcnRwaG9uZXNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/5. Module Project/8. MVC Core/ProjectMVCcore-Smartphone/ProjectMVCcore/Views/Smartphones/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU21hcnRwaG9uZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/5. Module Project/8. MVC Core/ProjectMVCcore-Smartphone/ProjectMVCcore/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/5. Module Project/8. MVC Core/ProjectMVCcore-Smartphone/ProjectMVCcore/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
